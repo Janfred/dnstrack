@@ -1,3 +1,9 @@
+require 'simplecov'
+if ENV['CODACY_PROJECT_TOKEN']
+  require 'codacy-coverage'
+  Codacy::Reporter.start
+end
+SimpleCov.start
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
