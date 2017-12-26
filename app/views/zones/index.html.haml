@@ -1,0 +1,28 @@
+- model_class = Zone
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:fqdn)
+      %th= model_class.human_attribute_name(:psedo_zone)
+      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:parent_zone_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @zones.each do |zone|
+      %tr
+        %td= link_to zone.id, zone_path(zone)
+        %td= zone.fqdn
+        %td= zone.psedo_zone
+        %td= zone.description
+        %td= zone.parent_zone_id
+        %td=l zone.created_at
+        %td
+          = link_to t('.show', :default => t("helpers.links.show")), zone_path(zone), :class => 'btn btn-default btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_zone_path(zone), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), zone_path(zone), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_zone_path, :class => 'btn btn-primary'

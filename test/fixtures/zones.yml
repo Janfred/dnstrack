@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fqdn: MyString
+  psedo_zone: false
+  description: MyString
+  parent_zone: one
+
+two:
+  fqdn: MyString
+  psedo_zone: false
+  description: MyString
+  parent_zone: two

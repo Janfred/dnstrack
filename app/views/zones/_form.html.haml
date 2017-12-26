@@ -1,0 +1,25 @@
+= form_for @zone, html: { class: "form form-horizontal zone" } do |f|
+  .form-group
+    = f.label :fqdn, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :fqdn, class: 'form-control', required: true
+    = f.error_span(:fqdn)
+  .form-group
+    = f.label :psedo_zone, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :psedo_zone, class: 'form-control', required: true
+    = f.error_span(:psedo_zone)
+  .form-group
+    = f.label :description, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :description, class: 'form-control', required: true
+    = f.error_span(:description)
+  .form-group
+    = f.label :parent_zone_id, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :parent_zone_id, class: 'form-control', required: true
+    = f.error_span(:parent_zone_id)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil,class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), zones_path, :class => 'btn btn-default'
