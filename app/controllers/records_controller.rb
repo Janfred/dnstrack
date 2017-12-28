@@ -21,7 +21,7 @@ class RecordsController < ApplicationController
     @record = Record.new(record_params)
 
     if @record.save
-      redirect_to @record, notice: 'Record was successfully created.'
+      redirect_to [@zone, @record], notice: 'Record was successfully created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
-      redirect_to @record, notice: 'Record was successfully updated.'
+      redirect_to [@zone, @record], notice: 'Record was successfully updated.'
     else
       render :edit
     end
