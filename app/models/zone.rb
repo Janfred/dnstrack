@@ -10,7 +10,7 @@ class Zone < ApplicationRecord
 
   def valid_parent_zone
     return true if parent_zone_id.nil?
-    parent_zone = ParentZone.find(parent_zone_id)
+    parent_zone = Zone.find(parent_zone_id)
     errors.add(:parent_zone_id, "There is no such parent zone") if parent_zone.nil?
   end
 

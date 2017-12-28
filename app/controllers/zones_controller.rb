@@ -41,7 +41,7 @@ class ZonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_zone
-      @zone = Zone.find(params[:id])
+      @zone = Zone.find_by(fqdn: params[:fqdn])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
