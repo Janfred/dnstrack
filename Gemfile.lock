@@ -48,6 +48,8 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.3)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.1.0)
     cancancan (2.1.2)
@@ -100,6 +102,7 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.6.2)
+    debug_inspector (0.0.3)
     deep_merge (1.1.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -299,6 +302,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   byebug
   cancancan
   capybara (~> 2.13)
