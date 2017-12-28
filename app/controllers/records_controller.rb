@@ -48,6 +48,7 @@ class RecordsController < ApplicationController
 
     def set_zone
       @zone = Zone.find_by(fqdn: params[:zone_fqdn])
+      raise ActionController::RoutingError.new('Not Found') if @zone.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

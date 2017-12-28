@@ -1,10 +1,35 @@
-= form_for @record, url: zone_records_path(@record.zone) do |f|
-  - if @record.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
-      %ul
-        - @record.errors.full_messages.each do |message|
-          %li= message
-
-  .actions
-    = f.submit 'Save'
+= form_for [@zone, @record], html: { class: "form form-horizontal record" } do |f|
+  .form-group
+    = f.label :zone_id, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :zone_id, class: 'form-control', required: true
+    = f.error_span(:zone_id)
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, class: 'form-control', required: true
+    = f.error_span(:name)
+  .form-group
+    = f.label :ttl, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :ttl, class: 'form-control'
+    = f.error_span(:ttl)
+  .form-group
+    = f.label :rrtype, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :rrtype, class: 'form-control', required: true
+    = f.error_span(:rrtype)
+  .form-group
+    = f.label :priority, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :priority, class: 'form-control'
+    = f.error_span(:priority)
+  .form-group
+    = f.label :target, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :target, class: 'form-control', required: true
+    = f.error_span(:target)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil,class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), zone_records_path, :class => 'btn btn-default'

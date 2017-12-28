@@ -8,6 +8,10 @@ class Zone < ApplicationRecord
   validate :child_zone_parent_zone_share_last_part
   validate :has_no_child_zones_which_would_be_effected
 
+  def to_param
+    fqdn
+  end
+
   def valid_parent_zone
     return true if parent_zone_id.nil?
     parent_zone = Zone.find(parent_zone_id)

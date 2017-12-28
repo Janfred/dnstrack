@@ -4,7 +4,7 @@ class CreateRecords < ActiveRecord::Migration[5.1]
       t.references :zone, foreign_key: true
       t.string :name
       t.integer :ttl
-      t.string :type
+      t.string :rrtype
       t.integer :priority
       t.string :target
 

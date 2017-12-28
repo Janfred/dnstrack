@@ -42,6 +42,7 @@ class ZonesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_zone
       @zone = Zone.find_by(fqdn: params[:fqdn])
+      raise ActionController::RoutingError.new('Not Found') if @zone.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

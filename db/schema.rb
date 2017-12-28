@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20171228205757) do
     t.integer "zone_id"
     t.string "name"
     t.integer "ttl"
-    t.string "type"
+    t.string "rrtype"
     t.integer "priority"
     t.string "target"
     t.datetime "created_at", null: false
