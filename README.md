@@ -18,6 +18,6 @@ cover the following features:
   * Reverse zone support (`PTR`)
   * Generation of Reverse Zone from Forward zones
 * User management for different access
-  * Give access to hole zone, subdomain, one specific record (useful for Reverse
-    records)
+  * Give access to whole zone, subdomain, one specific record (useful for
+    Reverse records)
   * Restrict Resource Reccords (white- and blacklisting)
