@@ -1,4 +1,5 @@
 class Zone < ApplicationRecord
+  has_paper_trail
   belongs_to :parent_zone, class_name: "Zone", required: false
   has_many :child_zones, class_name: "Zone", foreign_key: "parent_zone_id"
   has_many :records

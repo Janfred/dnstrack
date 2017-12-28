@@ -61,6 +61,7 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'cancancan'
 gem 'config'
+gem 'paper_trail'
 
 group :development do
   gem 'better_errors'
@@ -73,4 +74,3 @@ group :test do
   gem 'simplecov', :require => false
   gem 'codacy-coverage', :require => false
 end
-
