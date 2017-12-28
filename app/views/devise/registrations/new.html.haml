@@ -17,6 +17,8 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
+  %br/
   .actions
-    = f.submit t('.sign_up')
+    = f.submit t('.sign_up'), class: 'btn btn-primary'
+%br/
 = render "devise/shared/links"

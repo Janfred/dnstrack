@@ -5,6 +5,8 @@
     = f.label :email
     %br/
     = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+  %br/
   .actions
-    = f.submit t('.resend_confirmation_instructions')
+    = f.submit t('.resend_confirmation_instructions'), class: 'btn btn-primary'
+%br/
 = render "devise/shared/links"
