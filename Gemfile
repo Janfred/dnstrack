@@ -62,6 +62,7 @@ gem 'twitter-bootstrap-rails'
 gem 'cancancan'
 gem 'config'
 gem 'paper_trail'
+gem 'jquery-rails'
 
 group :development do
   gem 'better_errors'
