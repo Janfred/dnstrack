@@ -1,6 +1,7 @@
 class Zone < ApplicationRecord
   belongs_to :parent_zone, class_name: "Zone", required: false
   has_many :child_zones, class_name: "Zone", foreign_key: "parent_zone_id"
+  has_many :records
 
   validate :valid_parent_zone
   validate :is_a_valid_fqdn

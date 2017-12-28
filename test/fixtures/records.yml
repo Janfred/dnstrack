@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  zone: one
+  name: some.example.com
+  ttl: null
+  type: A
+  priority: null
+  target: "127.0.0.1"
+
+two:
+  zone: one
+  name: some.example.com
+  ttl: null
+  type: AAAA
+  priority: null
+  target: "::1"
