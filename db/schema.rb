@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226193108) do
+ActiveRecord::Schema.define(version: 20171228205757) do
+
+  create_table "records", force: :cascade do |t|
+    t.integer "zone_id"
+    t.string "name"
+    t.integer "ttl"
+    t.string "type"
+    t.integer "priority"
+    t.string "target"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zone_id"], name: "index_records_on_zone_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
