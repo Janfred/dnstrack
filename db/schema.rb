@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171228233540) do
+ActiveRecord::Schema.define(version: 20171229103321) do
 
   create_table "records", force: :cascade do |t|
     t.integer "zone_id"
@@ -21,7 +21,24 @@ ActiveRecord::Schema.define(version: 20171228233540) do
     t.string "target"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "committed"
     t.index ["zone_id"], name: "index_records_on_zone_id"
+  end
+
+  create_table "soa_records", force: :cascade do |t|
+    t.integer "zone_id"
+    t.string "primary_ns"
+    t.string "contact"
+    t.integer "serial"
+    t.integer "refresh"
+    t.integer "retry"
+    t.integer "expire"
+    t.integer "ttl"
+    t.string "serial_schema"
+    t.boolean "committed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zone_id"], name: "index_soa_records_on_zone_id"
   end
 
   create_table "users", force: :cascade do |t|
