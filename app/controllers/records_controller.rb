@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
   before_action :set_zone
+  after_action :get_flash_warnings, except: :index
 
   def index
     @records = Record.where(zone: @zone)
@@ -53,6 +54,11 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:name, :type, :ttl, :priority, :target)
+      params.require(:record).permit(:name, :rrtype, :ttl, :priority, :target)
+    end
+
+    def get_flash_warnings
+      flash[:warning] = @record.flash_warning if @record.flash_warning.present?
+      @record.flash_warning = nil
     end
 end
