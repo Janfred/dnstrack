@@ -1,6 +1,6 @@
 ---
 devise:
   from_mail: change-me-at-config-settings.yml@example.com
-  unconfirmed_grace_period: <%= 0.days %>
+  unconfirmed_grace_period_minutes: 0
   confirmation_timeout: null
-  remember_for: <%= 2.weeks %>
+  remember_for_minutes: 20160
