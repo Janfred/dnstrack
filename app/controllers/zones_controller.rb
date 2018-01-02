@@ -1,5 +1,5 @@
 class ZonesController < ApplicationController
-  before_action :set_zone, only: [:show, :edit, :update, :destroy]
+  before_action :set_zone, only: [:show, :edit, :update, :destroy, :commit]
 
   def index
     @zones = Zone.all
@@ -38,15 +38,24 @@ class ZonesController < ApplicationController
     redirect_to zones_url, notice: 'Zone was successfully destroyed.'
   end
 
+  def commit
+    @zone.records.each do |record|
+      record.committed = true
+      record.save
+    end
+    redirect_to zone_records_path(@zone)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_zone
-      @zone = Zone.find_by(fqdn: params[:fqdn])
+      fqdn = params[:fqdn] || params[:zone_fqdn]
+      @zone = Zone.find_by(fqdn: fqdn)
       raise ActionController::RoutingError.new('Not Found') if @zone.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def zone_params
-      params.require(:zone).permit(:fqdn, :parent_zone_id, :psedo_zone, :description)
+      params.require(:zone).permit(:fqdn, :parent_zone_id, :pseudo_zone, :description)
     end
 end

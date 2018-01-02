@@ -23,7 +23,7 @@ class Zone < ApplicationRecord
     if fqdn=~/\.\./
       errors.add(:fqdn, "Contains two following dots")
     else
-      return true if fqdn=~/[A-Za-z0-9.\-]*/
+      return true if fqdn=~/[A-Za-z0-9.\-_]*/
       errors.add(:fqdn, "Contains invalid characters")
     end
   end

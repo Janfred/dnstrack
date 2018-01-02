@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20171229103321) do
     t.string "target"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "committed"
+    t.boolean "committed", default: false, null: false
     t.index ["zone_id"], name: "index_records_on_zone_id"
   end
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20171229103321) do
 
   create_table "zones", force: :cascade do |t|
     t.string "fqdn"
-    t.boolean "psedo_zone"
+    t.boolean "pseudo_zone"
     t.string "description"
     t.integer "parent_zone_id"
     t.datetime "created_at", null: false

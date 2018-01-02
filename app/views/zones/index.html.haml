@@ -6,7 +6,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:fqdn)
-      %th= model_class.human_attribute_name(:psedo_zone)
+      %th= model_class.human_attribute_name(:pseudo_zone)
       %th= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:parent_zone_id)
       %th= model_class.human_attribute_name(:created_at)
@@ -16,7 +16,7 @@
       %tr
         %td= link_to zone.id, zone_path(zone)
         %td= zone.fqdn
-        %td= zone.psedo_zone
+        %td= zone.pseudo_zone
         %td= zone.description
         %td= zone.parent_zone_id
         %td=l zone.created_at

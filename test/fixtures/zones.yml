@@ -2,12 +2,12 @@
 
 one:
   fqdn: example.com
-  psedo_zone: false
+  pseudo_zone: false
   description: example.com
   parent_zone: null
 
 two:
   fqdn: subzone.example.com
-  psedo_zone: false
+  pseudo_zone: false
   description: Subzone
   parent_zone: two

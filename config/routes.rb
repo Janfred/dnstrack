@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
   resources :zones, param: :fqdn, format: false, constraints: { fqdn: /[^\/]+/ } do
-    resources :records
+    get :commit
+    get :uncommitted, to: "records#uncommitted"
+    resources :records do
+      get :commit
+    end
   end
 end

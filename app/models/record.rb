@@ -1,8 +1,8 @@
 require 'resolv'
 class Record < ApplicationRecord
 
-  ALLOWED_RRTYPES=%w{A AAAA CNAME DNAME NS DS PTR SRV TXT}
-  NOT_SUPPORTED_RRTYPES=%w{NAPTR DNSKEY RRSIG NSEC NSEC3 NSEC3PARAM TLSA}
+  ALLOWED_RRTYPES=%w{A AAAA CNAME NS DS PTR SRV TXT}
+  NOT_SUPPORTED_RRTYPES=%w{NAPTR DNAME  DNSKEY RRSIG NSEC NSEC3 NSEC3PARAM TLSA}
   DEPRECATED_RRTYPES=%w{A6 SPF}
 
   belongs_to :zone
@@ -11,7 +11,14 @@ class Record < ApplicationRecord
   validate :check_valid_rrtype
   validate :check_valid_record_target
 
-  attr_accessor :flash_warning
+  before_save :before_save_commit_reset
+
+  def before_save_commit_reset
+    $stderr.puts changes.inspect
+    return if changes.empty?
+    return if changes.include? "committed"
+    self.committed = false
+  end
 
   def check_valid_rrtype
     rrtype.upcase!
@@ -31,7 +38,7 @@ class Record < ApplicationRecord
     if self.respond_to? ("check_valid_#{self.rrtype}_record".to_sym)
       self.send("check_valid_#{self.rrtype}_record".to_sym)
     else
-      self.flash_warning = "Could not check format of target"
+      errors.add(:rrtype, "Could not check format of target")
     end
   end
 
@@ -44,5 +51,24 @@ class Record < ApplicationRecord
     errors.add(:target, "Not a valid IPv6 Address")
   end
   def check_valid_CNAME_record
+    # TODO
+  end
+  def check_valid_SRV_record
+    # TODO
+  end
+  def check_valid_MX_record
+    # TODO
+  end
+  def check_valid_NS_record
+    # TODO
+  end
+  def check_valid_DS_record
+    # TODO
+  end
+  def check_valid_TXT_record
+    # TODO
+  end
+  def check_valid_PTR_record
+    # TODO
   end
 end
