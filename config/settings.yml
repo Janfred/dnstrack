@@ -4,3 +4,6 @@ devise:
   unconfirmed_grace_period_minutes: 0
   confirmation_timeout: null
   remember_for_minutes: 20160
+users:
+  registerable: true
+  recoverable: true

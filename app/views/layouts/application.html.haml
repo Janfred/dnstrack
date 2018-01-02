@@ -37,7 +37,8 @@
               %li= link_to('Logout', destroy_user_session_path, method: :delete)
             - else
               %li= link_to('Login', new_user_session_path)
-              %li= link_to('Sign up', new_user_registration_path)
+              - if User.devise_modules.include? :registerable
+                %li= link_to('Sign up', new_user_registration_path)
 
     .container
       .row
@@ -45,4 +46,4 @@
           = bootstrap_flash
           = yield
       %footer
-        %p &copy; Jan-Frederik Rieckers 2017
+        %p &copy; Jan-Frederik Rieckers 2018
