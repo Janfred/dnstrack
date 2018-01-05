@@ -1,6 +1,8 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   def change
-    create_table :users do |t|
+    options = nil
+    options = 'ROW_FORMAT=DYNAMIC' if connection.adapter_name.downcase.to_sym == :mysql2
+    create_table :users, options: options  do |t|
       ## Database authenticatable
       t.string :username,           null: false, default: ""
       t.string :email,              null: false, default: ""

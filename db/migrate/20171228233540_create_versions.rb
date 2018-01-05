@@ -9,7 +9,9 @@ class CreateVersions < ActiveRecord::Migration[5.1]
   TEXT_BYTES = 1_073_741_823
 
   def change
-    create_table :versions do |t|
+    options = nil
+    options = 'ROW_FORMAT=DYNAMIC' if connection.adapter_name.downcase.to_sym == :mysql2
+    create_table :versions, options: options  do |t|
       t.string   :item_type, {:null=>false}
       t.integer  :item_id,   null: false
       t.string   :event,     null: false
