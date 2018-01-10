@@ -3,8 +3,8 @@ class SoaRecord < ApplicationRecord
 
   def set_next_serial
     if self.schema == "timestamp"
-      serial = Time.now.to_i
-      save
+      self.serial = Time.now.to_i
+      self.save
     elsif self.schema == "YYYYMMDDVV"
       t = Time.now.utc
       y = t.year.to_s.rjust(4, '0')
@@ -13,9 +13,9 @@ class SoaRecord < ApplicationRecord
 
       temp = y+m+d
       next_serial = (temp+"00").to_i
-      next_serial = serial+1 if next_serial <= serial
-      serial = next_serial
-      save
+      next_serial = self.serial+1 if next_serial <= self.serial
+      self.serial = next_serial
+      self.save
     end
   end
 end
