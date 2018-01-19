@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229103321) do
+ActiveRecord::Schema.define(version: 20180119175020) do
 
   create_table "records", force: :cascade do |t|
     t.integer "zone_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20171229103321) do
   end
 
   create_table "soa_records", force: :cascade do |t|
-    t.integer "zone_id"
     t.string "primary_ns"
     t.string "contact"
     t.integer "serial"
@@ -35,10 +34,9 @@ ActiveRecord::Schema.define(version: 20171229103321) do
     t.integer "expire"
     t.integer "ttl"
     t.string "serial_schema"
-    t.boolean "committed"
+    t.boolean "committed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["zone_id"], name: "index_soa_records_on_zone_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,7 +83,9 @@ ActiveRecord::Schema.define(version: 20171229103321) do
     t.integer "parent_zone_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "soa_record_id"
     t.index ["parent_zone_id"], name: "index_zones_on_parent_zone_id"
+    t.index ["soa_record_id"], name: "index_zones_on_soa_record_id"
   end
 
 end

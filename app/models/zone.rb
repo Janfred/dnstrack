@@ -1,16 +1,33 @@
 class Zone < ApplicationRecord
   has_paper_trail
+  belongs_to :soa_record, class_name: "SOARecord", required: false
   belongs_to :parent_zone, class_name: "Zone", required: false
   has_many :child_zones, class_name: "Zone", foreign_key: "parent_zone_id"
   has_many :records
 
+  after_create :save_soa_record, unless: :pseudo_zone
+
+  validate :validate_soa_record_presence, on: :update
   validate :valid_parent_zone
   validate :is_a_valid_fqdn
   validate :child_zone_parent_zone_share_last_part
   validate :has_no_child_zones_which_would_be_effected
 
+  def save_soa_record
+    self.soa_record = SOARecord.get_standard_soa
+    self.soa_record.save
+  end
+
   def to_param
     fqdn
+  end
+
+  def validate_soa_record_presence
+    if self.pseudo_zone
+      errors.add(:soa_record_id, "A pseudo zone mustn't have a SOA-Record") unless soa_record.nil?
+    else
+      errors.add(:soa_record_id, "A non-pseudo zone must have a SOA Record!") if soa_record.nil?
+    end
   end
 
   def valid_parent_zone

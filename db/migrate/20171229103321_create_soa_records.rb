@@ -1,7 +1,6 @@
 class CreateSoaRecords < ActiveRecord::Migration[5.1]
   def change
     create_table :soa_records do |t|
-      t.references :zone, foreign_key: true
       t.string :primary_ns
       t.string :contact
       t.integer :serial
@@ -10,7 +9,7 @@ class CreateSoaRecords < ActiveRecord::Migration[5.1]
       t.integer :expire
       t.integer :ttl
       t.string :serial_schema
-      t.boolean :committed
+      t.boolean :committed, default: false, null: false
 
       t.timestamps
     end
