@@ -4,7 +4,7 @@ before_script:
   - cp config/database.yml.travis config/database.yml
 script:
   - echo $RIOT_WEBHOOK > foobar
-  - cat foobar
+  - cat foobar | tail -c +2
   - bundle exec rails test
   - bundle exec rake cucumber
 notifications:
