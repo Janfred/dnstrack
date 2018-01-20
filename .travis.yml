@@ -3,7 +3,8 @@ cache: bundler
 before_script:
   - cp config/database.yml.travis config/database.yml
 script:
-  - echo $RIOT_WEBHOOK
+  - echo $RIOT_WEBHOOK > foobar
+  - cat foobar
   - bundle exec rails test
   - bundle exec rake cucumber
 notifications:
